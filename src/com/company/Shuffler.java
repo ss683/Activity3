@@ -17,7 +17,7 @@ public class Shuffler {
 	public static void main(String[] args) {
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive perfect shuffles:");
-		int[] values1 = {0, 1, 2, 3};
+		int[] values1 = {0, 1, 2, 3,4,5,6,7,8,9,10};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			perfectShuffle(values1);
 			System.out.print("  " + j + ":");
@@ -30,7 +30,7 @@ public class Shuffler {
 
 		System.out.println("Results of " + SHUFFLE_COUNT +
 								 " consecutive efficient selection shuffles:");
-		int[] values2 = {0, 1, 2, 3};
+		int[] values2 = {0, 1, 2, 3,4,5,6,7,8,9,10};
 		for (int j = 1; j <= SHUFFLE_COUNT; j++) {
 			selectionShuffle(values2);
 			System.out.print("  " + j + ":");
@@ -50,6 +50,7 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void perfectShuffle(int[] values) {
+		String[] shuffled = new String[52];
 		int z = 0;
 		int y;
 		for(y = 0; y < (cards.length + 1)/2; y++)
@@ -77,6 +78,20 @@ public class Shuffler {
 	 * @param values is an array of integers simulating cards to be shuffled.
 	 */
 	public static void selectionShuffle(int[] values) {
-		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
+		Random rand = new Random();
+		int[] shuffled = new int[52];
+		int[] cards = new int[52];
+		for (int k = 0; k < shuffled.length; k++)
+		{
+			int randNum = rand.nextInt(shuffled.length);
+			if(cards[randNum] == 0)
+			cards[randNum] = values[k];
+			else
+				k--;
+		}
+		for(int j = 0; j < shuffled.length; j++) {
+			shuffled[j] = cards[j];
+			cards[j] = 0;
+		}
 	}
 }
